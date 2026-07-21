@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sopa De Casa — Jantar caseiro em Manaus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#241611;
+    --bg-dark-2:#2F1D15;
+    --bg-dark-3:#1B0F0B;
+    --cream:#F6ECDD;
+    --cream-2:#EFE0C8;
+    --gold:#E8A33D;
+    --gold-deep:#C97F1E;
+    --gold-soft:#F2C77E;
+    --ember:#C1502E;
+    --sage:#8A9767;
+    --ink:#241611;
+    --ink-soft:#5C4A3E;
+    --line-dark: rgba(246,236,221,0.14);
+    --line-light: rgba(36,22,17,0.12);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  :focus-visible{
+    outline:2.5px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    padding:18px 0;
+    transition:background 0.35s ease, padding 0.35s ease, box-shadow .35s ease;
+  }
+  .nav.scrolled{
+    background:rgba(27,15,11,0.92);
+    backdrop-filter:blur(10px);
+    padding:12px 0;
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+  }
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .nav-logo{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.15rem;
+    color:var(--cream);
+    display:flex; align-items:center; gap:9px;
+  }
+  .nav-logo svg{width:26px; height:26px; flex-shrink:0;}
+  .nav-cta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    font-weight:600;
+    text-transform:uppercase;
+    color:var(--bg-dark);
+    background:var(--gold);
+    padding:11px 18px;
+    border-radius:100px;
+    transition:background .25s ease, transform .25s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--gold-soft); transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 90% at 78% 12%, #3A2415 0%, var(--bg-dark) 45%, var(--bg-dark-3) 100%);
+    color:var(--cream);
+    padding:150px 0 100px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(246,236,221,0.05) 1px, transparent 0);
+    background-size:26px 26px;
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+    position:relative;
+  }
+  .hero-eyebrow{color:var(--gold-soft); margin-bottom:18px; display:flex; align-items:center; gap:10px;}
+  .hero-eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--ember); display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.4rem);
+    color:var(--cream);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+    font-weight:500;
+  }
+  .hero-sub{
+    font-size:clamp(1.02rem, 1.4vw, 1.18rem);
+    color:rgba(246,236,221,0.78);
+    margin:22px 0 34px;
+    max-width:46ch;
+    line-height:1.6;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:38px;}
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:0.98rem;
+    padding:16px 28px;
+    border-radius:100px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    cursor:pointer;
+    border:none;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:var(--bg-dark-3);
+    box-shadow:0 10px 30px -8px rgba(232,163,61,0.55);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 34px -6px rgba(232,163,61,0.65); background:var(--gold-soft);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--cream);
+    border:1.5px solid var(--line-dark);
+  }
+  .btn-ghost:hover{border-color:var(--gold-soft); color:var(--gold-soft); transform:translateY(-2px);}
+
+  .hero-rating{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    font-size:0.92rem;
+    color:rgba(246,236,221,0.85);
+  }
+  .stars{display:flex; gap:2px;}
+  .stars svg{width:15px; height:15px; fill:var(--gold);}
+  .hero-rating b{color:var(--cream); font-weight:700;}
+
+  /* bowl illustration */
+  .bowl-scene{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    height:420px;
+  }
+  .steam{
+    position:absolute;
+    bottom:225px;
+    width:5px;
+    border-radius:3px;
+    background:linear-gradient(to top, rgba(246,236,221,0.55), rgba(246,236,221,0));
+    filter:blur(2px);
+    animation:rise 4.2s ease-in-out infinite;
+  }
+  .steam.s1{left:44%; height:70px; animation-delay:0s;}
+  .steam.s2{left:50%; height:95px; animation-delay:1.1s;}
+  .steam.s3{left:56%; height:65px; animation-delay:2.2s;}
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0) scaleX(1); opacity:0;}
+    15%{opacity:0.9;}
+    50%{transform:translateY(-70px) translateX(6px) scaleX(1.4); opacity:0.55;}
+    100%{transform:translateY(-150px) translateX(-8px) scaleX(1.8); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .steam{animation:none; opacity:0.35;}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative;}
+  .section-pad{padding:96px 0;}
+  .divider{
+    display:block;
+    width:100%;
+    height:44px;
+  }
+
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{color:var(--ember); margin-bottom:14px;}
+  .light .section-head .eyebrow{color:var(--ember);}
+  .dark .section-head .eyebrow{color:var(--gold);}
+  .section-head h2{font-size:clamp(1.9rem, 3.4vw, 2.6rem);}
+  .dark .section-head h2{color:var(--cream);}
+  .section-head p{
+    margin-top:16px;
+    font-size:1.05rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+  }
+  .dark .section-head p{color:rgba(246,236,221,0.72);}
+
+  /* ---------- WHY SECTION (light) ---------- */
+  .light{background:var(--cream);}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .why-card{
+    background:#fff;
+    border:1px solid var(--line-light);
+    border-radius:18px;
+    padding:30px 24px;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .why-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px -18px rgba(36,22,17,0.22);}
+  .why-icon{
+    width:44px; height:44px;
+    border-radius:12px;
+    background:var(--cream-2);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .why-icon svg{width:22px; height:22px; stroke:var(--ember); fill:none;}
+  .why-card h3{font-size:1.08rem; font-weight:600; margin-bottom:8px;}
+  .why-card p{font-size:0.92rem; color:var(--ink-soft); line-height:1.55;}
+
+  /* ---------- RODIZIO SECTION (dark) ---------- */
+  .dark{background:linear-gradient(180deg, var(--bg-dark-3), var(--bg-dark) 50%, var(--bg-dark-3)); color:var(--cream);}
+  .rodizio-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .rodizio-text p{
+    font-size:1.02rem;
+    line-height:1.75;
+    color:rgba(246,236,221,0.78);
+    margin-bottom:16px;
+  }
+  .rodizio-list{margin-top:26px; display:flex; flex-direction:column; gap:14px;}
+  .rodizio-list li{
+    display:flex; gap:12px; align-items:flex-start;
+    font-size:0.96rem;
+    color:rgba(246,236,221,0.88);
+  }
+  .rodizio-list svg{width:18px; height:18px; flex-shrink:0; margin-top:2px; stroke:var(--gold); fill:none;}
+
+  .bowl-ladder{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:26px;
+    height:280px;
+  }
+  .bowl-item{display:flex; flex-direction:column; align-items:center; gap:12px;}
+  .bowl-item svg{display:block;}
+  .bowl-item span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:rgba(246,236,221,0.6);
+  }
+  .bowl-item.featured span{color:var(--gold-soft); font-weight:600;}
+
+  /* ---------- SOCIAL PROOF (light) ---------- */
+  .proof-grid{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:50px;
+    align-items:center;
+  }
+  .proof-score{
+    background:var(--bg-dark-3);
+    color:var(--cream);
+    border-radius:24px;
+    padding:44px 34px;
+    text-align:center;
+  }
+  .proof-score .num{
+    font-family:'Fraunces', serif;
+    font-size:4.4rem;
+    font-weight:700;
+    color:var(--gold);
+    line-height:1;
+  }
+  .proof-score .stars{justify-content:center; margin:14px 0 10px;}
+  .proof-score .stars svg{width:18px; height:18px;}
+  .proof-score p{font-size:0.85rem; color:rgba(246,236,221,0.65);}
+  .quote-card{
+    background:#fff;
+    border:1px solid var(--line-light);
+    border-radius:22px;
+    padding:40px;
+    position:relative;
+  }
+  .quote-mark{
+    font-family:'Fraunces', serif;
+    font-size:4rem;
+    color:var(--cream-2);
+    line-height:0.6;
+    position:absolute;
+    top:36px; left:32px;
+  }
+  .quote-card blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.22rem;
+    line-height:1.55;
+    color:var(--ink);
+    margin-left:28px;
+  }
+  .quote-attr{
+    margin-top:22px;
+    margin-left:28px;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    display:flex; align-items:center; gap:8px;
+  }
+  .quote-attr .stars svg{width:12px; height:12px;}
+
+  /* ---------- HOURS / LOCATION (dark, chalkboard) ---------- */
+  .hours-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:50px;
+    align-items:stretch;
+  }
+  .board{
+    background:var(--bg-dark-3);
+    border:1px solid rgba(246,236,221,0.1);
+    border-radius:22px;
+    padding:36px;
+  }
+  .board h3{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:22px;
+  }
+  .board-row{
+    display:flex;
+    justify-content:space-between;
+    padding:13px 0;
+    border-bottom:1px dashed rgba(246,236,221,0.14);
+    font-size:0.96rem;
+  }
+  .board-row:last-child{border-bottom:none;}
+  .board-row .day{color:rgba(246,236,221,0.85); font-weight:500;}
+  .board-row .time{font-family:'JetBrains Mono', monospace; font-size:0.85rem; color:var(--gold-soft);}
+  .board-row.closed .time{color:rgba(246,236,221,0.35);}
+
+  .loc-card{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:20px;
+  }
+  .loc-item{display:flex; gap:16px; align-items:flex-start;}
+  .loc-item svg{width:22px; height:22px; stroke:var(--gold); fill:none; flex-shrink:0; margin-top:2px;}
+  .loc-item h4{font-size:0.98rem; font-weight:600; color:var(--cream); margin-bottom:4px;}
+  .loc-item p{font-size:0.92rem; color:rgba(246,236,221,0.68); line-height:1.5;}
+  .loc-card .btn{margin-top:8px; align-self:flex-start;}
+
+  /* ---------- FINAL CTA (gold band) ---------- */
+  .cta-band{
+    background:linear-gradient(120deg, var(--gold-deep), var(--gold) 60%, var(--gold-soft));
+    color:var(--bg-dark-3);
+    padding:88px 0;
+    text-align:center;
+  }
+  .cta-band h2{
+    font-size:clamp(2rem, 4vw, 3rem);
+    color:var(--bg-dark-3);
+    max-width:16ch;
+    margin:0 auto 16px;
+  }
+  .cta-band p{
+    font-size:1.05rem;
+    color:rgba(27,15,11,0.75);
+    max-width:48ch;
+    margin:0 auto 34px;
+  }
+  .cta-band .btn-primary{
+    background:var(--bg-dark-3);
+    color:var(--cream);
+    box-shadow:0 14px 30px -10px rgba(27,15,11,0.45);
+  }
+  .cta-band .btn-primary:hover{background:#12090a;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--bg-dark-3);
+    color:rgba(246,236,221,0.6);
+    padding:52px 0 34px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:30px;
+    padding-bottom:30px;
+    border-bottom:1px solid rgba(246,236,221,0.1);
+    margin-bottom:24px;
+  }
+  .footer-logo{
+    font-family:'Fraunces', serif;
+    font-size:1.2rem;
+    color:var(--cream);
+    display:flex; align-items:center; gap:9px; margin-bottom:10px;
+  }
+  .footer-logo svg{width:22px; height:22px;}
+  .footer-col p, .footer-col a{font-size:0.88rem; line-height:1.7;}
+  .footer-col a:hover{color:var(--gold-soft);}
+  .footer-social{display:flex; gap:14px;}
+  .footer-social a{
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid rgba(246,236,221,0.16);
+    display:flex; align-items:center; justify-content:center;
+    transition:border-color .25s ease, color .25s ease;
+  }
+  .footer-social a:hover{border-color:var(--gold);}
+  .footer-social svg{width:16px; height:16px; stroke:currentColor; fill:none;}
+  .footer-bottom{font-size:0.8rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .bowl-scene{height:280px; order:-1;}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .rodizio-grid, .proof-grid, .hours-grid{grid-template-columns:1fr; gap:36px;}
+    .proof-score{max-width:280px; margin:0 auto;}
+  }
+  @media (max-width: 520px){
+    .why-grid{grid-template-columns:1fr;}
+    .section-pad{padding:72px 0;}
+    .hero{padding:130px 0 70px;}
+    .nav-cta{padding:9px 14px; font-size:0.65rem;}
+    .quote-card{padding:30px 24px;}
+    .board{padding:28px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.6"><path d="M4 11h16a1 1 0 0 1 1 1 8 8 0 0 1-16 0v0a1 1 0 0 1 1-1z"/><path d="M8 11c0-2 1-3 1-5" stroke-linecap="round"/><path d="M12 11c0-2.5 1.4-3.5 1.4-6" stroke-linecap="round"/><path d="M5 20h14" stroke-linecap="round"/></svg>
+      Sopa De Casa
+    </div>
+    <a class="nav-cta" href="https://wa.me/5592994494658?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20na%20Sopa%20De%20Casa." target="_blank" rel="noopener">Reservar mesa</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow hero-eyebrow"><span class="dot"></span> ABERTO QUA A DOM · 18H ÀS 22H</div>
+      <h1>O jantar que parece <em>colo de mãe</em>, em plena Manaus.</h1>
+      <p class="hero-sub">Sopas de verdade, feitas devagar, servidas quentinhas numa noite de Tarumã. Escolha o tamanho da sua tigela ou peça o rodízio e experimente todas.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/5592994494658?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20na%20Sopa%20De%20Casa." target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#241611"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          Reservar mesa pelo WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#localizacao">Como chegar</a>
+      </div>
+      <div class="hero-rating">
+        <span class="stars">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+        </span>
+        <span><b>4,7</b> de nota · 188 avaliações no Google</span>
+      </div>
+    </div>
+
+    <div class="bowl-scene">
+      <div class="steam s1"></div>
+      <div class="steam s2"></div>
+      <div class="steam s3"></div>
+      <svg width="300" height="220" viewBox="0 0 300 220">
+        <ellipse cx="150" cy="205" rx="120" ry="10" fill="rgba(0,0,0,0.25)"/>
+        <path d="M40 90 Q40 180 150 180 Q260 180 260 90 Z" fill="#F6ECDD"/>
+        <path d="M40 90 Q40 100 150 100 Q260 100 260 90 L260 100 Q260 110 150 110 Q40 110 40 100 Z" fill="#E8A33D"/>
+        <ellipse cx="150" cy="90" rx="110" ry="16" fill="#D98F2E"/>
+        <ellipse cx="150" cy="88" rx="98" ry="12" fill="#EDB25C"/>
+        <circle cx="118" cy="86" r="4" fill="#8A9767"/>
+        <circle cx="150" cy="90" r="3.5" fill="#C1502E"/>
+        <circle cx="178" cy="85" r="4" fill="#8A9767"/>
+        <circle cx="135" cy="92" r="3" fill="#C1502E"/>
+        <path d="M28 100 Q10 95 8 78" stroke="#E8A33D" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M272 100 Q292 92 286 72" stroke="#E8A33D" stroke-width="9" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="light section-pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">POR QUE SOPA DE CASA</div>
+      <h2>Comida de casa, feita com o cuidado que só se tem em casa.</h2>
+      <p>Nada de tempero de pacote nem caldo pronto. Cada tigela sai da nossa cozinha do mesmo jeito que sairia da sua — só que sem você ter que lavar a louça depois.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M4 11h16a1 1 0 0 1 1 1 8 8 0 0 1-16 0v0a1 1 0 0 1 1-1z"/><path d="M8 11c0-2 1-3 1-5"/><path d="M12 11c0-2.5 1.4-3.5 1.4-6"/></svg></div>
+        <h3>Sopa de verdade</h3>
+        <p>Caldos que cozinham por horas, com receitas de família — não fórmula de restaurante.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 3v18M12 3v18M19 3v18" stroke-linecap="round"/></svg></div>
+        <h3>Rodízio ou tigela única</h3>
+        <p>Prove os sabores da casa no rodízio, ou escolha o tamanho de tigela ideal pra sua fome.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M4 20V10a8 8 0 0 1 16 0v10" stroke-linecap="round"/><path d="M2 20h20" stroke-linecap="round"/></svg></div>
+        <h3>Ambiente aconchegante</h3>
+        <p>Decoração cuidada, cantinho limpo e clima de casa — ideal pra um jantar tranquilo.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/></svg></div>
+        <h3>Só à noite, vale a espera</h3>
+        <p>Abrimos das 18h às 22h, de quarta a domingo — o horário certo pra desacelerar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark section-pad">
+  <div class="wrap">
+    <div class="rodizio-grid">
+      <div>
+        <div class="section-head reveal" style="margin-bottom:0;">
+          <div class="eyebrow">O RODÍZIO</div>
+          <h2>Uma tigela pequena não é compromisso. É só o começo.</h2>
+        </div>
+        <div class="rodizio-text" style="margin-top:22px;">
+          <p>No rodízio, você experimenta as sopas do dia sem escolher só uma — o garçom vai passando de mesa em mesa até você dizer "chega". Se preferir ir direto ao ponto, escolha o tamanho de tigela que combina com sua fome.</p>
+        </div>
+        <ul class="rodizio-list">
+          <li><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg> Tigela pequena, média ou grande, sempre à escolha</li>
+          <li><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg> Rodízio com reposição enquanto durar a fome</li>
+          <li><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg> Preço justo, sem surpresa na conta</li>
+        </ul>
+      </div>
+      <div class="bowl-ladder">
+        <div class="bowl-item">
+          <svg width="70" height="50" viewBox="0 0 70 50"><path d="M8 18 Q8 42 35 42 Q62 42 62 18Z" fill="#3D2817" stroke="#E8A33D" stroke-width="1.5"/><ellipse cx="35" cy="18" rx="27" ry="6" fill="#E8A33D" opacity="0.85"/></svg>
+          <span>Pequena</span>
+        </div>
+        <div class="bowl-item">
+          <svg width="90" height="68" viewBox="0 0 90 68"><path d="M8 24 Q8 58 45 58 Q82 58 82 24Z" fill="#3D2817" stroke="#E8A33D" stroke-width="1.5"/><ellipse cx="45" cy="24" rx="37" ry="7" fill="#E8A33D" opacity="0.85"/></svg>
+          <span>Média</span>
+        </div>
+        <div class="bowl-item featured">
+          <svg width="112" height="86" viewBox="0 0 112 86"><path d="M8 30 Q8 74 56 74 Q104 74 104 30Z" fill="#3D2817" stroke="#F2C77E" stroke-width="2"/><ellipse cx="56" cy="30" rx="48" ry="8" fill="#F2C77E"/></svg>
+          <span>Grande</span>
+        </div>
+        <div class="bowl-item">
+          <svg width="90" height="68" viewBox="0 0 90 68"><path d="M8 24 Q8 58 45 58 Q82 58 82 24Z" fill="#3D2817" stroke="#C1502E" stroke-width="1.5" stroke-dasharray="3 3"/><ellipse cx="45" cy="24" rx="37" ry="7" fill="#C1502E" opacity="0.7"/></svg>
+          <span>Rodízio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light section-pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">QUEM JÁ PROVOU</div>
+      <h2>188 pessoas avaliaram. A nota fala por si.</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-score reveal">
+        <div class="num">4,7</div>
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p>188 avaliações no Google</p>
+      </div>
+      <div class="quote-card reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>Acesso fácil pela avenida principal, ambiente bem cuidado e decorado, tudo limpinho — e o sabor da sopa não decepciona. Ainda dá pra escolher o tamanho da tigela ou cair de cabeça no rodízio.</blockquote>
+        <div class="quote-attr">
+          <span class="stars">
+            <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            <svg viewBox="0 0 20 20" fill="#E8A33D"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+          </span>
+          Avaliação verificada no Google
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark section-pad" id="localizacao">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">HORÁRIO E LOCALIZAÇÃO</div>
+      <h2>Só à noite. Só de quarta a domingo. Vale reservar.</h2>
+    </div>
+    <div class="hours-grid">
+      <div class="board reveal">
+        <h3>Funcionamento</h3>
+        <div class="board-row closed"><span class="day">Segunda</span><span class="time">Fechado</span></div>
+        <div class="board-row closed"><span class="day">Terça</span><span class="time">Fechado</span></div>
+        <div class="board-row"><span class="day">Quarta</span><span class="time">18h – 22h</span></div>
+        <div class="board-row"><span class="day">Quinta</span><span class="time">18h – 22h</span></div>
+        <div class="board-row"><span class="day">Sexta</span><span class="time">18h – 22h</span></div>
+        <div class="board-row"><span class="day">Sábado</span><span class="time">18h – 22h</span></div>
+        <div class="board-row"><span class="day">Domingo</span><span class="time">18h – 22h</span></div>
+      </div>
+      <div class="loc-card reveal">
+        <div class="loc-item">
+          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0 1 19 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div>
+            <h4>Endereço</h4>
+            <p>Tv. Boipeva, 71 — Tarumã, Manaus - AM, 69023-035</p>
+          </div>
+        </div>
+        <div class="loc-item">
+          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 0-2z"/></svg>
+          <div>
+            <h4>WhatsApp</h4>
+            <p>+55 92 99449-4658</p>
+          </div>
+        </div>
+        <a class="btn btn-primary" href="https://www.google.com/maps/place/Sopa+De+Casa/@-2.9760202,-60.0415814,15z/data=!4m7!3m6!1s0x926c181c283770f5:0xe5f52c52857efa0!8m2!3d-2.9760202!4d-60.022527" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#241611"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0 1 19 9.5C19 14.5 12 21 12 21zm0-9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg>
+          Abrir no Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>A mesa só fica pronta de quarta a domingo, à noite.</h2>
+    <p>Garanta seu lugar antes que a fila do rodízio comece. Manda uma mensagem e a gente reserva pra você.</p>
+    <a class="btn btn-primary" href="https://wa.me/5592994494658?text=Ol%C3%A1!%20Quero%20reservar%20uma%20mesa%20na%20Sopa%20De%20Casa." target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#F6ECDD"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+      Reservar mesa pelo WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E8A33D" stroke-width="1.6"><path d="M4 11h16a1 1 0 0 1 1 1 8 8 0 0 1-16 0v0a1 1 0 0 1 1-1z"/><path d="M8 11c0-2 1-3 1-5" stroke-linecap="round"/><path d="M12 11c0-2.5 1.4-3.5 1.4-6" stroke-linecap="round"/></svg>
+          Sopa De Casa
+        </div>
+        <p>Jantar caseiro em Manaus,<br>de quarta a domingo.</p>
+      </div>
+      <div class="footer-col">
+        <p><a href="tel:+5592994494658">+55 92 99449-4658</a></p>
+        <p>Tv. Boipeva, 71 — Tarumã<br>Manaus - AM, 69023-035</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://wa.me/5592994494658" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sopa De Casa. Feito com carinho em Manaus.</span>
+      <span>Avaliação 4,7 ★ · 188 avaliações no Google</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

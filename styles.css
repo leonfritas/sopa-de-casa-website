@@ -72,8 +72,27 @@ h1,h2,h3{
 .nav-logo{
   display:flex; align-items:center;
 }
-.logo-img { height: 64px; width: auto; }
-.logo-img-footer { height: 90px; width: auto; margin-bottom: 12px; }
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.reg-mark {
+  position: absolute;
+  bottom: 6px;
+  right: -8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1;
+}
+.logo-img { height: 64px; width: auto; display: block; }
+.logo-img-footer { height: 90px; width: auto; margin-bottom: 12px; display: block; }
+.footer-logo .reg-mark {
+  bottom: 18px; /* Ajuste por causa do margin-bottom da imagem no footer */
+  right: -10px;
+  font-size: 0.65rem;
+}
 .nav-cta{
   font-family:'JetBrains Mono', monospace;
   font-size:0.72rem;

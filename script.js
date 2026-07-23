@@ -15,3 +15,20 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 revealEls.forEach(el => io.observe(el));
+
+// carrossel de temperos
+const track = document.getElementById('spice-track');
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+
+if(track && btnPrev && btnNext) {
+  btnNext.addEventListener('click', () => {
+    // largura de um card + gap
+    const itemWidth = track.querySelector('.spice-card').offsetWidth + 22;
+    track.scrollBy({ left: itemWidth, behavior: 'smooth' });
+  });
+  btnPrev.addEventListener('click', () => {
+    const itemWidth = track.querySelector('.spice-card').offsetWidth + 22;
+    track.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+  });
+}

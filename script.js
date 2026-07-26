@@ -23,12 +23,26 @@ const btnNext = document.getElementById('btn-next');
 
 if(track && btnPrev && btnNext) {
   btnNext.addEventListener('click', () => {
-    // largura de um card + gap
     const itemWidth = track.querySelector('.spice-card').offsetWidth + 22;
     track.scrollBy({ left: itemWidth, behavior: 'smooth' });
   });
   btnPrev.addEventListener('click', () => {
     const itemWidth = track.querySelector('.spice-card').offsetWidth + 22;
     track.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+  });
+}
+
+const trackGaleria = document.getElementById('galeria-track');
+const btnPrevGaleria = document.getElementById('btn-prev-galeria');
+const btnNextGaleria = document.getElementById('btn-next-galeria');
+
+if(trackGaleria && btnPrevGaleria && btnNextGaleria) {
+  btnNextGaleria.addEventListener('click', () => {
+    const itemWidth = trackGaleria.querySelector('.galeria-card').offsetWidth + 22;
+    trackGaleria.scrollBy({ left: itemWidth, behavior: 'smooth' });
+  });
+  btnPrevGaleria.addEventListener('click', () => {
+    const itemWidth = trackGaleria.querySelector('.galeria-card').offsetWidth + 22;
+    trackGaleria.scrollBy({ left: -itemWidth, behavior: 'smooth' });
   });
 }

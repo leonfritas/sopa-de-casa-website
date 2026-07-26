@@ -196,6 +196,14 @@ h1,h2,h3{
   align-items:flex-end;
   height:420px;
 }
+.hero-bowl-img {
+  max-width: 100%;
+  max-height: 100%; /* Ajusta automaticamente ao container de 420px ou 280px no mobile */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  z-index: 2; /* Fica sobreposta em relação à fumaça caso se cruzem */
+}
 .steam{
   position:absolute;
   bottom:225px;
@@ -546,6 +554,21 @@ footer{
 }
 .partner-badge svg{width:14px; height:14px; stroke:var(--gold-deep); fill:none;}
 
+.galeria-card{
+  flex:0 0 calc(33.333% - 14.66px); /* 3 por view no desktop */
+  scroll-snap-align:start;
+  border-radius:18px;
+  overflow:hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow:0 12px 24px -10px rgba(0,0,0,0.3);
+}
+.galeria-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
 .carousel-wrapper{
   position:relative;
   margin: 0 -12px; /* para compensar o padding das setas */
@@ -639,12 +662,14 @@ footer{
   .bowl-scene{height:280px; order:-1;}
   .why-grid{grid-template-columns:repeat(2,1fr);}
   .spice-card{flex:0 0 calc(50% - 11px);} /* 2 por view no tablet */
+  .galeria-card{flex:0 0 calc(50% - 11px);}
   .rodizio-grid, .proof-grid, .hours-grid{grid-template-columns:1fr; gap:36px;}
   .proof-score{max-width:280px; margin:0 auto;}
 }
 @media (max-width: 520px){
   .why-grid{grid-template-columns:1fr;}
   .spice-card{flex:0 0 calc(85%);} /* no mobile, deixa vazar o proximo card para dar dica de rolagem */
+  .galeria-card{flex:0 0 calc(85%);}
   .carousel-btn{display:none;} /* oculta setas no mobile, usuario faz swipe */
   .section-pad{padding:72px 0;}
   .hero{padding:130px 0 70px;}

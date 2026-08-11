@@ -280,6 +280,7 @@ section{position:relative;}
 .why-icon svg{width:22px; height:22px; stroke:var(--ember); fill:none;}
 .why-card h3{font-size:1.08rem; font-weight:600; margin-bottom:8px;}
 .why-card p{font-size:0.92rem; color:var(--ink-soft); line-height:1.55;}
+.why-card p + p{margin-top:8px;}
 
 /* ---------- RODIZIO SECTION (dark) ---------- */
 .dark{background:linear-gradient(180deg, var(--bg-dark-3), var(--bg-dark) 50%, var(--bg-dark-3)); color:var(--cream);}
@@ -302,6 +303,51 @@ section{position:relative;}
   color:rgba(246,236,221,0.88);
 }
 .rodizio-list svg{width:18px; height:18px; flex-shrink:0; margin-top:2px; stroke:var(--gold); fill:none;}
+
+.porcao-block{
+  margin-top:36px;
+  padding-top:28px;
+  border-top:1px dashed rgba(246,236,221,0.18);
+}
+.porcao-block .eyebrow{color:var(--gold); margin-bottom:12px;}
+.porcao-block h3{
+  font-family:'Fraunces', serif;
+  font-size:1.35rem;
+  font-weight:600;
+  color:var(--cream);
+  margin-bottom:12px;
+}
+.porcao-block > p{
+  font-size:1.02rem;
+  line-height:1.7;
+  color:rgba(246,236,221,0.78);
+  margin-bottom:18px;
+}
+
+.sides-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px 28px;
+  max-width:920px;
+}
+.sides-grid li{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:1.02rem;
+  color:var(--ink);
+  background:#fff;
+  border:1px solid var(--line-light);
+  border-radius:14px;
+  padding:16px 18px;
+}
+.sides-grid svg{
+  width:18px;
+  height:18px;
+  flex-shrink:0;
+  stroke:var(--ember);
+  fill:none;
+}
 
 .bowl-ladder{
   display:flex;
@@ -661,6 +707,7 @@ footer{
   .hero-grid{grid-template-columns:1fr;}
   .bowl-scene{height:280px; order:-1;}
   .why-grid{grid-template-columns:repeat(2,1fr);}
+  .sides-grid{grid-template-columns:repeat(2,1fr);}
   .spice-card{flex:0 0 calc(50% - 11px);} /* 2 por view no tablet */
   .galeria-card{flex:0 0 calc(50% - 11px);}
   .rodizio-grid, .proof-grid, .hours-grid{grid-template-columns:1fr; gap:36px;}
@@ -668,6 +715,7 @@ footer{
 }
 @media (max-width: 520px){
   .why-grid{grid-template-columns:1fr;}
+  .sides-grid{grid-template-columns:1fr;}
   .spice-card{flex:0 0 calc(85%);} /* no mobile, deixa vazar o proximo card para dar dica de rolagem */
   .galeria-card{flex:0 0 calc(85%);}
   .carousel-btn{display:none;} /* oculta setas no mobile, usuario faz swipe */

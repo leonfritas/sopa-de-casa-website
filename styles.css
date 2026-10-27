@@ -281,6 +281,14 @@ section{position:relative;}
 .why-card h3{font-size:1.08rem; font-weight:600; margin-bottom:8px;}
 .why-card p{font-size:0.92rem; color:var(--ink-soft); line-height:1.55;}
 .why-card p + p{margin-top:8px;}
+.diferencial-visual{margin:48px 0 0;}
+.diferencial-visual img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:18px;
+}
+.diferencial-visual .diferencial-mobile{display:none;}
 
 /* ---------- RODIZIO SECTION (dark) ---------- */
 .dark{background:linear-gradient(180deg, var(--bg-dark-3), var(--bg-dark) 50%, var(--bg-dark-3)); color:var(--cream);}
@@ -599,6 +607,20 @@ footer{
   margin-top:18px;
 }
 .partner-badge svg{width:14px; height:14px; stroke:var(--gold-deep); fill:none;}
+.partner-posters{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:18px;
+  margin-bottom:48px;
+}
+.partner-posters img{
+  width:100%;
+  height:auto;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  display:block;
+  border-radius:18px;
+}
 
 .galeria-card{
   flex:0 0 calc(33.333% - 14.66px); /* 3 por view no desktop */
@@ -704,9 +726,12 @@ footer{
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 860px){
+  .diferencial-visual .diferencial-desktop{display:none;}
+  .diferencial-visual .diferencial-mobile{display:block;}
   .hero-grid{grid-template-columns:1fr;}
   .bowl-scene{height:280px; order:-1;}
   .why-grid{grid-template-columns:repeat(2,1fr);}
+  .partner-posters{grid-template-columns:repeat(2,1fr);}
   .sides-grid{grid-template-columns:repeat(2,1fr);}
   .spice-card{flex:0 0 calc(50% - 11px);} /* 2 por view no tablet */
   .galeria-card{flex:0 0 calc(50% - 11px);}
@@ -715,6 +740,7 @@ footer{
 }
 @media (max-width: 520px){
   .why-grid{grid-template-columns:1fr;}
+  .partner-posters{grid-template-columns:1fr;}
   .sides-grid{grid-template-columns:1fr;}
   .spice-card{flex:0 0 calc(85%);} /* no mobile, deixa vazar o proximo card para dar dica de rolagem */
   .galeria-card{flex:0 0 calc(85%);}
